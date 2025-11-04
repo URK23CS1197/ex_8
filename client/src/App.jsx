@@ -9,9 +9,12 @@ function App() {
   const [regno, setRegno] = useState('');
   const [cgpa, setCgpa] = useState('');
 
+  // Set API base URL to your Render backend
+  const API_BASE = 'https://ex-8.onrender.com';
+
   // Fetch all students
   const loadStudents = () => {
-    axios.get('http://localhost:7000/api/viewAll')
+    axios.get(`${API_BASE}/api/viewAll`)
       .then(res => {
         setStudents(res.data);
       })
@@ -25,7 +28,7 @@ function App() {
   // Add new student
   const addStudent = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:7000/api/addNew', { name, regno, cgpa })
+    axios.post(`${API_BASE}/api/addNew`, { name, regno, cgpa })
       .then(res => {
         setMessage(res.data.status);
         loadStudents();
@@ -34,7 +37,7 @@ function App() {
 
   // Delete student
   const deleteStudent = (id) => {
-    axios.post('http://localhost:7000/api/deleteUser', { id })
+    axios.post(`${API_BASE}/api/deleteUser`, { id })
       .then(res => {
         setMessage(res.data.status);
         loadStudents();
