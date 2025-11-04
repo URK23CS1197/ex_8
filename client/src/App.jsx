@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <header className="bg-primary text-white text-center py-4">
+      <header className="bg-gradient text-white text-center py-5">
         <h1 className="display-4 fw-bold">Laptop Catalog</h1>
         <p className="lead">Manage your laptop inventory with ease</p>
       </header>
@@ -66,9 +66,9 @@ function App() {
           <div className="row justify-content-center">
             <div className="col-12 col-md-10 col-lg-8">
               {/* Add Laptop Form */}
-              <div className="card shadow mb-5">
-                <div className="card-body">
-                  <h3 className="card-title text-center mb-4">Add New Laptop</h3>
+              <div className="card shadow-lg mb-5">
+                <div className="card-body p-4">
+                  <h3 className="card-title text-center mb-4 text-white">Add New Laptop</h3>
                   <form onSubmit={addLaptop}>
                     <div className="mb-3">
                       <input
@@ -97,7 +97,7 @@ function App() {
                         onChange={(e) => setSpecs(e.target.value)}
                       />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-4">
                       <input
                         className="form-control"
                         placeholder="Price (e.g., 999.99)"
@@ -108,7 +108,7 @@ function App() {
                         onChange={(e) => setPrice(e.target.value)}
                       />
                     </div>
-                    <button className="btn btn-primary w-100" type="submit">
+                    <button className="btn btn-primary w-100 py-2" type="submit">
                       Add Laptop
                     </button>
                   </form>
@@ -118,7 +118,7 @@ function App() {
               {/* Success Message */}
               {message && (
                 <div
-                  className="alert alert-success alert-dismissible fade show"
+                  className="alert alert-success alert-dismissible fade show text-center"
                   role="alert"
                 >
                   {message}
@@ -131,36 +131,36 @@ function App() {
               )}
 
               {/* Laptop List */}
-              <div className="card shadow">
-                <div className="card-body">
-                  <h3 className="card-title text-center mb-4">Laptop List</h3>
+              <div className="card shadow-lg">
+                <div className="card-body p-4">
+                  <h3 className="card-title text-center mb-4 text-white">Laptop List</h3>
                   <div className="table-responsive">
                     <table className="table table-hover table-bordered">
                       <thead className="table-light">
                         <tr>
-                          <th scope="col">ID</th>
-                          <th scope="col">Brand</th>
-                          <th scope="col">Model</th>
-                          <th scope="col">Specifications</th>
-                          <th scope="col">Price ($)</th>
-                          <th scope="col">Action</th>
+                          <th scope="col" className="text-white">ID</th>
+                          <th scope="col" className="text-white">Brand</th>
+                          <th scope="col" className="text-white">Model</th>
+                          <th scope="col" className="text-white">Specifications</th>
+                          <th scope="col" className="text-white">Price ($)</th>
+                          <th scope="col" className="text-white">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {laptops.length === 0 ? (
                           <tr>
-                            <td colSpan="6" className="text-center">
+                            <td colSpan="6" className="text-center text-white">
                               No Laptops Available
                             </td>
                           </tr>
                         ) : (
                           laptops.map((laptop, index) => (
                             <tr key={laptop._id}>
-                              <td>{index + 1}</td>
-                              <td>{laptop.brand}</td>
-                              <td>{laptop.model}</td>
-                              <td>{laptop.specs}</td>
-                              <td>{parseFloat(laptop.price).toFixed(2)}</td>
+                              <td className="text-white">{index + 1}</td>
+                              <td className="text-white">{laptop.brand}</td>
+                              <td className="text-white">{laptop.model}</td>
+                              <td className="text-white">{laptop.specs}</td>
+                              <td className="text-white">{parseFloat(laptop.price).toFixed(2)}</td>
                               <td>
                                 <button
                                   className="btn btn-danger btn-sm"
@@ -188,9 +188,11 @@ function App() {
 
       {/* Custom CSS for additional styling */}
       <style jsx>{`
+        .bg-gradient {
+          background: linear-gradient(135deg, #007bff, #0056b3);
+        }
         .card {
-          border-radius: 10px;
-          transition: transform 0.2s;
+          transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover {
           transform: translateY(-5px);
@@ -198,37 +200,26 @@ function App() {
         .btn-primary {
           background-color: #007bff;
           border-color: #007bff;
-          transition: background-color 0.3s;
         }
         .btn-primary:hover {
           background-color: #0056b3;
           border-color: #0056b3;
         }
         .btn-danger {
-          transition: background-color 0.3s;
+          background-color: #dc3545;
+          border-color: #dc3545;
         }
         .btn-danger:hover {
           background-color: #c82333;
           border-color: #c82333;
         }
-        .form-control:focus {
-          border-color: #007bff;
-          box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
         .alert {
           border-radius: 8px;
         }
-        /* Ensure full centering */
-        body, html {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
-        .d-flex {
-          min-height: 100vh;
-        }
-        main {
-          flex: 1;
+        /* Ensure consistent spacing */
+        .container {
+          padding-top: 2rem;
+          padding-bottom: 2rem;
         }
       `}</style>
     </div>
