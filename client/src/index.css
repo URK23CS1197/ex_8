@@ -1,117 +1,13 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: dark;
-  color: #ffffff;
-  background: linear-gradient(135deg, #007bff, #0056b3);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 body {
   margin: 0;
-  min-width: 320px;
+  padding: 0;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(135deg, #f0f4f8, #e0e7f0);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 #root {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  box-sizing: border-box;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  color: #ffffff;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-}
-
-a {
-  font-weight: 500;
-  color: #e0e0ff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #c0c0ff;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #0056b3;
-  color: #ffffff;
-  cursor: pointer;
-  transition: background-color 0.25s, border-color 0.25s;
-}
-
-button:hover {
-  background-color: #004080;
-  border-color: #e0e0ff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto #e0e0ff;
-}
-
-/* Custom card styling */
-.card {
-  background-color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  padding: 1rem;
-}
-
-.card:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-}
-
-.table {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-.table-light {
-  background-color: #f0f0f0;
-}
-
-.form-control {
-  background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #cccccc;
-}
-
-.form-control:focus {
-  background-color: #ffffff;
-  color: #000000;
-  border-color: #0056b3;
-  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5em;
-  }
-  .container {
-    padding: 0 0.5rem;
-  }
-  .card {
-    padding: 0.5rem;
-  }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
