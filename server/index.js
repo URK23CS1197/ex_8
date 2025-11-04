@@ -6,60 +6,58 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const mongoURI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/college';
+const mongoURI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/laptopcatalog';
 
 mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('Connection error:', err));
 
-// Define Student schema
-const studentSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  regno: { type: String, required: true, unique: true },
-  cgpa: { type: Number, required: true }
+// Define Laptop schema
+const laptopSchema = new mongoose.Schema({
+  brand: { type: String, required: true },
+  model: { type: String, required: true },
+  specs: { type: String, required: true },
+  price: { type: Number, required: true }
 });
-const Student = mongoose.model('Student', studentSchema);
+const Laptop = mongoose.model('Laptop', laptopSchema);
 
-// Fetch all students
+// Fetch all laptops
 app.get('/api/viewAll', async (req, res) => {
   try {
-    const students = await Student.find();
-    res.send(students);
+    const laptops = await Laptop.find();
+    res.send(laptops);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch students' });
+    res.status(500).json({ error: 'Failed to fetch laptops' });
   }
 });
 
-// Add new student with validation
+// Add new laptop with validation
 app.post('/api/addNew', async (req, res) => {
   try {
-    const { name, regno, cgpa } = req.body;
-    if (!name || !regno || cgpa == null) {
+    const { brand, model, specs, price } = req.body;
+    if (!brand || !model || !specs || price == null) {
       return res.json({ status: 'Invalid input data' });
     }
-    const newStudent = new Student({ 
-      name: name.trim(), 
-      regno: regno.trim(),  
-      cgpa: Number(cgpa)
+    const newLaptop = new Laptop({ 
+      brand: brand.trim(), 
+      model: model.trim(),  
+      specs: specs.trim(),
+      price: Number(price)
     });
-    await newStudent.save();
+    await newLaptop.save();
     res.json({ status: 'Data Saved Successfully' });
   } catch (err) {
-    if (err.code === 11000) {
-      res.json({ status: `${req.body.name} already exists` });
-    } else {
-      res.json({ status: err.message });
-    }
+    res.json({ status: err.message });
   }
 });
 
-// Delete student by ID
+// Delete laptop by ID
 app.post('/api/deleteUser', async (req, res) => {
   try {
-    await Student.findByIdAndDelete(req.body.id);
-    res.json({ status: 'User deleted successfully' });
+    await Laptop.findByIdAndDelete(req.body.id);
+    res.json({ status: 'Laptop deleted successfully' });
   } catch (err) {
-    res.json({ status: 'Error deleting user' });
+    res.json({ status: 'Error deleting laptop' });
   }
 });
 
