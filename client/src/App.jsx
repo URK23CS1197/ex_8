@@ -135,7 +135,7 @@ function App() {
                       <th scope="col" className="table-light">Brand</th>
                       <th scope="col" className="table-light">Model</th>
                       <th scope="col" className="table-light">Specifications</th>
-                      <th scope="col" className="table-light">Price ($)</th>
+                      <th scope="col" className="table-light">Price (Rs.)</th>
                       <th scope="col" className="table-light">Action</th>
                     </tr>
                   </thead>
