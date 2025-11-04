@@ -3,8 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #1a1a1a;
+  color: #ffffff;
+  background: linear-gradient(135deg, #007bff, #0056b3);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,7 +18,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
 }
 
 #root {
@@ -33,16 +32,17 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
   color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #e0e0ff;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #c0c0ff;
 }
 
 button {
@@ -52,27 +52,29 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #333333;
+  background-color: #0056b3;
+  color: #ffffff;
   cursor: pointer;
   transition: background-color 0.25s, border-color 0.25s;
 }
 
 button:hover {
-  background-color: #404040;
-  border-color: #646cff;
+  background-color: #004080;
+  border-color: #e0e0ff;
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto #e0e0ff;
 }
 
 /* Custom card styling */
 .card {
-  background-color: #2d2d2d;
+  background-color: #ffffff;
   border: none;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
 }
 
 .card:hover {
@@ -80,25 +82,25 @@ button:focus-visible {
 }
 
 .table {
-  background-color: #2d2d2d;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .table-light {
-  background-color: #3a3a3a;
+  background-color: #f0f0f0;
 }
 
 .form-control {
-  background-color: #3a3a3a;
-  color: #ffffff;
-  border: 1px solid #444444;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #cccccc;
 }
 
 .form-control:focus {
-  background-color: #3a3a3a;
-  color: #ffffff;
-  border-color: #646cff;
-  box-shadow: 0 0 5px rgba(100, 108, 255, 0.5);
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
 }
 
 /* Responsive adjustments */
@@ -108,5 +110,8 @@ button:focus-visible {
   }
   .container {
     padding: 0 0.5rem;
+  }
+  .card {
+    padding: 0.5rem;
   }
 }
