@@ -2,6 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+// Placeholder image path - replace with your actual image path or URL
+const laptopImage = 'path/to/laptop-image.jpg'; // Update this with the correct path
+
 function App() {
   const [laptops, setLaptops] = useState([]);
   const [message, setMessage] = useState(null);
@@ -56,19 +59,32 @@ function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <header className="bg-gradient text-white text-center py-5">
+      <header className="text-center py-5">
         <h1 className="display-4 fw-bold">Laptop Catalog</h1>
         <p className="lead">Manage your laptop inventory with ease</p>
       </header>
 
-      <main className="flex-grow-1 d-flex justify-content-center">
+      <main className="flex-grow-1 d-flex justify-content-center align-items-center">
         <div className="container my-5">
           <div className="row justify-content-center">
             <div className="col-12 col-md-10 col-lg-8">
+              {/* Background Image */}
+              <div
+                className="position-relative mb-5"
+                style={{
+                  backgroundImage: `url(${laptopImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  minHeight: '200px',
+                  borderRadius: '12px',
+                  overflow: 'hidden',
+                }}
+              ></div>
+
               {/* Add Laptop Form */}
               <div className="card shadow-lg mb-5">
                 <div className="card-body p-4">
-                  <h3 className="card-title text-center mb-4 text-white">Add New Laptop</h3>
+                  <h3 className="card-title text-center mb-4">Add New Laptop</h3>
                   <form onSubmit={addLaptop}>
                     <div className="mb-3">
                       <input
@@ -133,34 +149,34 @@ function App() {
               {/* Laptop List */}
               <div className="card shadow-lg">
                 <div className="card-body p-4">
-                  <h3 className="card-title text-center mb-4 text-white">Laptop List</h3>
+                  <h3 className="card-title text-center mb-4">Laptop List</h3>
                   <div className="table-responsive">
                     <table className="table table-hover table-bordered">
                       <thead className="table-light">
                         <tr>
-                          <th scope="col" className="text-white">ID</th>
-                          <th scope="col" className="text-white">Brand</th>
-                          <th scope="col" className="text-white">Model</th>
-                          <th scope="col" className="text-white">Specifications</th>
-                          <th scope="col" className="text-white">Price ($)</th>
-                          <th scope="col" className="text-white">Action</th>
+                          <th scope="col">ID</th>
+                          <th scope="col">Brand</th>
+                          <th scope="col">Model</th>
+                          <th scope="col">Specifications</th>
+                          <th scope="col">Price ($)</th>
+                          <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {laptops.length === 0 ? (
                           <tr>
-                            <td colSpan="6" className="text-center text-white">
+                            <td colSpan="6" className="text-center">
                               No Laptops Available
                             </td>
                           </tr>
                         ) : (
                           laptops.map((laptop, index) => (
                             <tr key={laptop._id}>
-                              <td className="text-white">{index + 1}</td>
-                              <td className="text-white">{laptop.brand}</td>
-                              <td className="text-white">{laptop.model}</td>
-                              <td className="text-white">{laptop.specs}</td>
-                              <td className="text-white">{parseFloat(laptop.price).toFixed(2)}</td>
+                              <td>{index + 1}</td>
+                              <td>{laptop.brand}</td>
+                              <td>{laptop.model}</td>
+                              <td>{laptop.specs}</td>
+                              <td>{parseFloat(laptop.price).toFixed(2)}</td>
                               <td>
                                 <button
                                   className="btn btn-danger btn-sm"
@@ -188,9 +204,6 @@ function App() {
 
       {/* Custom CSS for additional styling */}
       <style jsx>{`
-        .bg-gradient {
-          background: linear-gradient(135deg, #007bff, #0056b3);
-        }
         .card {
           transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -220,6 +233,12 @@ function App() {
         .container {
           padding-top: 2rem;
           padding-bottom: 2rem;
+        }
+        /* Header styling */
+        header {
+          background: linear-gradient(135deg, #007bff, #0056b3);
+          padding: 3rem 1rem;
+          margin-bottom: 2rem;
         }
       `}</style>
     </div>
