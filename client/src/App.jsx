@@ -37,7 +37,7 @@ function App() {
         setModel('');
         setSpecs('');
         setPrice('');
-        setTimeout(() => setMessage(null), 3000); // Clear message after 3 seconds
+        setTimeout(() => setMessage(null), 3000);
       })
       .catch((err) => console.log(err));
   };
@@ -61,119 +61,117 @@ function App() {
         <p className="lead">Manage your laptop inventory with ease</p>
       </header>
 
-      <main className="container my-5">
-        <div className="row justify-content-center">
-          <div className="col-lg-8">
-            {/* Add Laptop Form */}
-            <div className="card shadow mb-5">
-              <div className="card-body">
-                <h3 className="card-title text-center mb-4">Add New Laptop</h3>
-                <form onSubmit={addLaptop}>
-                  <div className="mb-3">
-                    <input
-                      className="form-control"
-                      placeholder="Brand (e.g., Dell)"
-                      value={brand}
-                      required
-                      onChange={(e) => setBrand(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <input
-                      className="form-control"
-                      placeholder="Model (e.g., XPS 13)"
-                      value={model}
-                      required
-                      onChange={(e) => setModel(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <input
-                      className="form-control"
-                      placeholder="Specifications (e.g., i7, 16GB RAM)"
-                      value={specs}
-                      required
-                      onChange={(e) => setSpecs(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <input
-                      className="form-control"
-                      placeholder="Price (e.g., 999.99)"
-                      type="number"
-                      step="0.01"
-                      value={price}
-                      required
-                      onChange={(e) => setPrice(e.target.value)}
-                    />
-                  </div>
-                  <button className="btn btn-primary w-100" type="submit">
-                    Add Laptop
-                  </button>
-                </form>
-              </div>
+      <main className="container my-5 d-flex justify-content-center">
+        <div className="col-12 col-md-10 col-lg-8">
+          {/* Add Laptop Form */}
+          <div className="card shadow mb-5">
+            <div className="card-body">
+              <h3 className="card-title text-center mb-4">Add New Laptop</h3>
+              <form onSubmit={addLaptop}>
+                <div className="mb-3">
+                  <input
+                    className="form-control"
+                    placeholder="Brand (e.g., Dell)"
+                    value={brand}
+                    required
+                    onChange={(e) => setBrand(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    className="form-control"
+                    placeholder="Model (e.g., XPS 13)"
+                    value={model}
+                    required
+                    onChange={(e) => setModel(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    className="form-control"
+                    placeholder="Specifications (e.g., i7, 16GB RAM)"
+                    value={specs}
+                    required
+                    onChange={(e) => setSpecs(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    className="form-control"
+                    placeholder="Price (e.g., 999.99)"
+                    type="number"
+                    step="0.01"
+                    value={price}
+                    required
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </div>
+                <button className="btn btn-primary w-100" type="submit">
+                  Add Laptop
+                </button>
+              </form>
             </div>
+          </div>
 
-            {/* Success Message */}
-            {message && (
-              <div
-                className="alert alert-success alert-dismissible fade show"
-                role="alert"
-              >
-                {message}
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={() => setMessage(null)}
-                ></button>
-              </div>
-            )}
+          {/* Success Message */}
+          {message && (
+            <div
+              className="alert alert-success alert-dismissible fade show"
+              role="alert"
+            >
+              {message}
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setMessage(null)}
+              ></button>
+            </div>
+          )}
 
-            {/* Laptop List */}
-            <div className="card shadow">
-              <div className="card-body">
-                <h3 className="card-title text-center mb-4">Laptop List</h3>
-                <div className="table-responsive">
-                  <table className="table table-hover table-bordered">
-                    <thead className="table-light">
+          {/* Laptop List */}
+          <div className="card shadow">
+            <div className="card-body">
+              <h3 className="card-title text-center mb-4">Laptop List</h3>
+              <div className="table-responsive">
+                <table className="table table-hover table-bordered">
+                  <thead className="table-light">
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Brand</th>
+                      <th scope="col">Model</th>
+                      <th scope="col">Specifications</th>
+                      <th scope="col">Price ($)</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {laptops.length === 0 ? (
                       <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Specifications</th>
-                        <th scope="col">Price ($)</th>
-                        <th scope="col">Action</th>
+                        <td colSpan="6" className="text-center">
+                          No Laptops Available
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {laptops.length === 0 ? (
-                        <tr>
-                          <td colSpan="6" className="text-center">
-                            No Laptops Available
+                    ) : (
+                      laptops.map((laptop, index) => (
+                        <tr key={laptop._id}>
+                          <td>{index + 1}</td>
+                          <td>{laptop.brand}</td>
+                          <td>{laptop.model}</td>
+                          <td>{laptop.specs}</td>
+                          <td>{parseFloat(laptop.price).toFixed(2)}</td>
+                          <td>
+                            <button
+                              className="btn btn-danger btn-sm"
+                              onClick={() => deleteLaptop(laptop._id)}
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>
-                      ) : (
-                        laptops.map((laptop, index) => (
-                          <tr key={laptop._id}>
-                            <td>{index + 1}</td>
-                            <td>{laptop.brand}</td>
-                            <td>{laptop.model}</td>
-                            <td>{laptop.specs}</td>
-                            <td>{parseFloat(laptop.price).toFixed(2)}</td>
-                            <td>
-                              <button
-                                className="btn btn-danger btn-sm"
-                                onClick={() => deleteLaptop(laptop._id)}
-                              >
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
-                </div>
+                      ))
+                    )}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -215,6 +213,12 @@ function App() {
         }
         .alert {
           border-radius: 8px;
+        }
+        /* Ensure content is centered */
+        main {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       `}</style>
     </div>
