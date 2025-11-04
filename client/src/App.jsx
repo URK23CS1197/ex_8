@@ -55,130 +55,134 @@ function App() {
   };
 
   return (
-    <div className="d-flex flex-column min-vh-100 bg-light">
+    <div className="d-flex flex-column min-vh-100">
       <header className="bg-primary text-white text-center py-4">
         <h1 className="display-4 fw-bold">Laptop Catalog</h1>
         <p className="lead">Manage your laptop inventory with ease</p>
       </header>
 
-      <main className="container my-5 d-flex justify-content-center">
-        <div className="col-12 col-md-10 col-lg-8">
-          {/* Add Laptop Form */}
-          <div className="card shadow mb-5">
-            <div className="card-body">
-              <h3 className="card-title text-center mb-4">Add New Laptop</h3>
-              <form onSubmit={addLaptop}>
-                <div className="mb-3">
-                  <input
-                    className="form-control"
-                    placeholder="Brand (e.g., Dell)"
-                    value={brand}
-                    required
-                    onChange={(e) => setBrand(e.target.value)}
-                  />
+      <main className="flex-grow-1 d-flex justify-content-center">
+        <div className="container my-5">
+          <div className="row justify-content-center">
+            <div className="col-12 col-md-10 col-lg-8">
+              {/* Add Laptop Form */}
+              <div className="card shadow mb-5">
+                <div className="card-body">
+                  <h3 className="card-title text-center mb-4">Add New Laptop</h3>
+                  <form onSubmit={addLaptop}>
+                    <div className="mb-3">
+                      <input
+                        className="form-control"
+                        placeholder="Brand (e.g., Dell)"
+                        value={brand}
+                        required
+                        onChange={(e) => setBrand(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <input
+                        className="form-control"
+                        placeholder="Model (e.g., XPS 13)"
+                        value={model}
+                        required
+                        onChange={(e) => setModel(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <input
+                        className="form-control"
+                        placeholder="Specifications (e.g., i7, 16GB RAM)"
+                        value={specs}
+                        required
+                        onChange={(e) => setSpecs(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <input
+                        className="form-control"
+                        placeholder="Price (e.g., 999.99)"
+                        type="number"
+                        step="0.01"
+                        value={price}
+                        required
+                        onChange={(e) => setPrice(e.target.value)}
+                      />
+                    </div>
+                    <button className="btn btn-primary w-100" type="submit">
+                      Add Laptop
+                    </button>
+                  </form>
                 </div>
-                <div className="mb-3">
-                  <input
-                    className="form-control"
-                    placeholder="Model (e.g., XPS 13)"
-                    value={model}
-                    required
-                    onChange={(e) => setModel(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    className="form-control"
-                    placeholder="Specifications (e.g., i7, 16GB RAM)"
-                    value={specs}
-                    required
-                    onChange={(e) => setSpecs(e.target.value)}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    className="form-control"
-                    placeholder="Price (e.g., 999.99)"
-                    type="number"
-                    step="0.01"
-                    value={price}
-                    required
-                    onChange={(e) => setPrice(e.target.value)}
-                  />
-                </div>
-                <button className="btn btn-primary w-100" type="submit">
-                  Add Laptop
-                </button>
-              </form>
-            </div>
-          </div>
+              </div>
 
-          {/* Success Message */}
-          {message && (
-            <div
-              className="alert alert-success alert-dismissible fade show"
-              role="alert"
-            >
-              {message}
-              <button
-                type="button"
-                className="btn-close"
-                onClick={() => setMessage(null)}
-              ></button>
-            </div>
-          )}
+              {/* Success Message */}
+              {message && (
+                <div
+                  className="alert alert-success alert-dismissible fade show"
+                  role="alert"
+                >
+                  {message}
+                  <button
+                    type="button"
+                    className="btn-close"
+                    onClick={() => setMessage(null)}
+                  ></button>
+                </div>
+              )}
 
-          {/* Laptop List */}
-          <div className="card shadow">
-            <div className="card-body">
-              <h3 className="card-title text-center mb-4">Laptop List</h3>
-              <div className="table-responsive">
-                <table className="table table-hover table-bordered">
-                  <thead className="table-light">
-                    <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Brand</th>
-                      <th scope="col">Model</th>
-                      <th scope="col">Specifications</th>
-                      <th scope="col">Price ($)</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {laptops.length === 0 ? (
-                      <tr>
-                        <td colSpan="6" className="text-center">
-                          No Laptops Available
-                        </td>
-                      </tr>
-                    ) : (
-                      laptops.map((laptop, index) => (
-                        <tr key={laptop._id}>
-                          <td>{index + 1}</td>
-                          <td>{laptop.brand}</td>
-                          <td>{laptop.model}</td>
-                          <td>{laptop.specs}</td>
-                          <td>{parseFloat(laptop.price).toFixed(2)}</td>
-                          <td>
-                            <button
-                              className="btn btn-danger btn-sm"
-                              onClick={() => deleteLaptop(laptop._id)}
-                            >
-                              Delete
-                            </button>
-                          </td>
+              {/* Laptop List */}
+              <div className="card shadow">
+                <div className="card-body">
+                  <h3 className="card-title text-center mb-4">Laptop List</h3>
+                  <div className="table-responsive">
+                    <table className="table table-hover table-bordered">
+                      <thead className="table-light">
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Brand</th>
+                          <th scope="col">Model</th>
+                          <th scope="col">Specifications</th>
+                          <th scope="col">Price ($)</th>
+                          <th scope="col">Action</th>
                         </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
+                      </thead>
+                      <tbody>
+                        {laptops.length === 0 ? (
+                          <tr>
+                            <td colSpan="6" className="text-center">
+                              No Laptops Available
+                            </td>
+                          </tr>
+                        ) : (
+                          laptops.map((laptop, index) => (
+                            <tr key={laptop._id}>
+                              <td>{index + 1}</td>
+                              <td>{laptop.brand}</td>
+                              <td>{laptop.model}</td>
+                              <td>{laptop.specs}</td>
+                              <td>{parseFloat(laptop.price).toFixed(2)}</td>
+                              <td>
+                                <button
+                                  className="btn btn-danger btn-sm"
+                                  onClick={() => deleteLaptop(laptop._id)}
+                                >
+                                  Delete
+                                </button>
+                              </td>
+                            </tr>
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </main>
 
-      <footer className="bg-dark text-white text-center py-3 mt-auto">
+      <footer className="bg-dark text-white text-center py-3">
         <p className="mb-0">&copy; 2025 Laptop Catalog. All rights reserved.</p>
       </footer>
 
@@ -214,11 +218,17 @@ function App() {
         .alert {
           border-radius: 8px;
         }
-        /* Ensure content is centered */
+        /* Ensure full centering */
+        body, html {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        .d-flex {
+          min-height: 100vh;
+        }
         main {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          flex: 1;
         }
       `}</style>
     </div>
